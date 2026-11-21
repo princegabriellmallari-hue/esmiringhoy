@@ -125,12 +125,30 @@ body:has(#expense-section.active) .btn-top { display: none; }
 
 
 /* ---------- PART D | CARDS AND GRIDS ----------
-ASSIGN:
+ASSIGN:gab
    PURPOSE: White bordered boxes. .grid-2 = two cards side by side. */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+}
 
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+/* Remove bottom margin when cards are placed inside .grid-2 so the grid gap controls spacing */
+.grid-2 > .card {
+  margin-bottom: 0;
+}
 
 /* ---------- PART E | FORMS AND BUTTONS ----------
-ASSIGN:
+ASSIGN: lio
    PURPOSE: Labels, text boxes, dropdowns, the blue button.
    .form-grid puts the Add Expense fields in two columns. */
 
@@ -140,21 +158,21 @@ ASSIGN:
 
 
 /* ---------- PART F | COLORED MESSAGES ----------
-ASSIGN:
+ASSIGN: mark
    PURPOSE: green = Safe/success, orange = WARNING (80%+),
    red = ALERT/error, blue = Note. :empty hides blank boxes. */
 
 
 
 /* ---------- PART G | LISTS, WALLET ROWS, TABLE ----------
-ASSIGN:
+ASSIGN:jian
    PURPOSE: Daily breakdown / wallet summary lists, the account
    rows in Wallets, and the Expenses table (amounts in red). */
 
 
 
 /* ---------- PART H | SUMMARY BOXES AND PROGRESS BAR ----------
-ASSIGN:
+ASSIGN: lio
    PURPOSE: The 3 number cards, and the thin bar showing how
    much of the monthly budget is used (blue -> orange at 80%
    -> red when exceeded; JavaScript adds .warn / .danger). */
@@ -162,5 +180,5 @@ ASSIGN:
 
 
 /* ---------- PART I | SMALLER SCREENS ----------
-ASSIGN:
+ASSIGN: mark
    PURPOSE: Tablet and phone layouts. */
