@@ -1,0 +1,166 @@
+/* ==========================================================
+   PERSONAL BUDGET TRACKER - style.css (DESIGN)  [REDESIGN]
+   Dashboard look: white sidebar, light gray background,
+   white bordered cards, thin progress bars, blue button.
+   A rule looks like:  selector { property: value; }
+   ========================================================== */
+
+
+/* ---------- PART A | COLORS AND BASICS ----------
+   PURPOSE: Color variables (change the theme in ONE place)
+   and base text settings. Use a color with var(--blue). */
+:root {
+  --bg: #f3f5f7;
+  --card: #ffffff;
+  --border: #e5e7eb;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --blue: #2563eb;
+  --blue-dark: #1d4ed8;
+  --green: #16a34a;
+  --red: #dc2626;
+  --track: #e5e7eb;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Inter, "Segoe UI", system-ui, Arial, sans-serif;
+  font-size: 14px;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+h2 { margin: 0 0 16px 0; font-size: 22px; font-weight: 700; padding-right: 150px; }
+h3 { margin: 0 0 12px 0; font-size: 14px; font-weight: 600; }
+
+.muted  { color: var(--muted); }
+.red    { color: var(--red); }
+.hidden { display: none; }   /* helper class: JS hides things with this */
+
+
+/* ---------- PART B | LAYOUT AND SIDEBAR ----------
+   PURPOSE: Sidebar on the left (sticky), content on the right.
+   The active tab gets a soft gray background.
+   The hamburger (☰) hides the tabs using a hidden checkbox. */
+.app { display: flex; min-height: 100vh; }
+
+.sidebar {
+  width: 210px;
+  flex-shrink: 0;
+  background: #ffffff;
+  border-right: 1px solid var(--border);
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.menu-check { display: none; }
+.menu-check:checked ~ .side-nav { display: none; }
+
+.brand { display: flex; align-items: center; gap: 8px; }
+.logo {
+  width: 22px; height: 22px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #e5e7eb;
+  border: 1px solid #d1d5db;
+}
+.brand-name { font-weight: 700; font-size: 14px; line-height: 1.25; }
+.menu-btn { margin-left: auto; font-size: 18px; cursor: pointer; padding: 0 4px; user-select: none; }
+
+.brand-sub { margin: 8px 0 16px 0; font-size: 12px; color: var(--muted); }
+
+.side-nav { display: flex; flex-direction: column; gap: 2px; }
+.side-nav .nav-btn {
+  text-align: left;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font-size: 13px;
+  font-family: inherit;
+  padding: 8px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.side-nav .nav-btn:hover  { background: #f3f4f6; }
+.side-nav .nav-btn.active { background: #e8ebef; color: var(--text); font-weight: 600; }
+
+.side-footer { margin: auto 0 0 0; padding-top: 16px; font-size: 11px; color: var(--muted); }
+
+.content { flex: 1; padding: 20px 24px; min-width: 0; position: relative; }
+
+
+/* ---------- PART C | PAGES (TAB SWITCHING) ----------
+ASSIGN:
+   PURPOSE: Every .page is hidden; only .page.active shows.
+   JavaScript just moves the word "active". */
+.page        { display: none; }
+.page.active { display: block; }
+
+/* Blue shortcut button, top right (same row as the page title) */
+.btn-top {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  background: var(--blue);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+}
+.btn-top:hover { background: var(--blue-dark); }
+/* Hide the shortcut while already on the Add Expense page */
+body:has(#expense-section.active) .btn-top { display: none; }
+
+
+/* ---------- PART D | CARDS AND GRIDS ----------
+ASSIGN:
+   PURPOSE: White bordered boxes. .grid-2 = two cards side by side. */
+
+
+/* ---------- PART E | FORMS AND BUTTONS ----------
+ASSIGN:
+   PURPOSE: Labels, text boxes, dropdowns, the blue button.
+   .form-grid puts the Add Expense fields in two columns. */
+
+
+/* Small gray "Update" button in the Wallets rows */
+
+
+
+/* ---------- PART F | COLORED MESSAGES ----------
+ASSIGN:
+   PURPOSE: green = Safe/success, orange = WARNING (80%+),
+   red = ALERT/error, blue = Note. :empty hides blank boxes. */
+
+
+
+/* ---------- PART G | LISTS, WALLET ROWS, TABLE ----------
+ASSIGN:
+   PURPOSE: Daily breakdown / wallet summary lists, the account
+   rows in Wallets, and the Expenses table (amounts in red). */
+
+
+
+/* ---------- PART H | SUMMARY BOXES AND PROGRESS BAR ----------
+ASSIGN:
+   PURPOSE: The 3 number cards, and the thin bar showing how
+   much of the monthly budget is used (blue -> orange at 80%
+   -> red when exceeded; JavaScript adds .warn / .danger). */
+
+
+
+/* ---------- PART I | SMALLER SCREENS ----------
+ASSIGN:
+   PURPOSE: Tablet and phone layouts. */

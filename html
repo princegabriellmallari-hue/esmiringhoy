@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<!--
+  ==========================================================
+  PERSONAL BUDGET TRACKER - index.html (STRUCTURE)  [REDESIGN]
+  Same pages, same text, same ids as the original version.
+  ONLY the layout changed: sidebar + dashboard-style cards.
+  script.js is the ORIGINAL file (not changed at all).
+  RULE: name an id/class must be the same for
+        style.css and script.js too (they are case-sensitive).
+  ==========================================================
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Budget Tracker</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+<div class="app">
+
+  <!-- ====================================================
+       SIDEBAR: logo + title, hamburger, the 5 tabs, footer.
+       The tab buttons keep class "nav-btn" and data-section,
+       so the original script.js still switches the pages.
+       The hamburger works with CSS only (hidden checkbox).
+       ==================================================== -->
+  <aside class="sidebar">
+    <input type="checkbox" id="menu-toggle" class="menu-check">
+
+    <div class="brand">
+      <span class="logo"></span>
+      <span class="brand-name">Personal Budget Tracker</span>
+      <label for="menu-toggle" class="menu-btn" title="Show or hide menu">☰</label>
+    </div>
+    <p class="brand-sub">Track your budget, wallets, and daily expenses</p>
+
+    <nav class="side-nav">
+      <button class="nav-btn active" data-section="budget-section">Budget</button>
+      <button class="nav-btn" data-section="wallet-section">Wallets</button>
+      <button class="nav-btn" data-section="expense-section">Add Expense</button>
+      <button class="nav-btn" data-section="list-section">Expenses</button>
+      <button class="nav-btn" data-section="summary-section">Summary</button>
+    </nav>
+
+    <p class="side-footer">Final Project: Budget Tracker | All amounts are in Philippine Peso (PHP)</p>
+  </aside>
+
+  <!-- ====================================================
+       MAIN AREA: the blue shortcut button (top right) and
+       the 5 pages. Only the page with class "active" shows.
+       The shortcut button is also a nav-btn, so it opens the
+       Add Expense page without any new JavaScript.
+       ==================================================== -->
+  <main class="content">
+
+    <button class="nav-btn btn-top" data-section="expense-section">+ Add Expense</button>
+
+    <!-- ================= PAGE 1: BUDGET =================
+    ASSIGN: gab
+         Python menu option 1. Button: save-budget-btn.
+         Message: budget-message. Breakdown: allocation-output. -->
+    <section id="budget-section" class="page active">
+      <h2>Set Monthly Budget &amp; Daily Spending Limit</h2>
+
+    </section>
+
+    <section id="budget-section" class="page active">
+  <h2>Set Monthly Budget &amp; Daily Spending Limit</h2>
+
+  <div class="form-group">
+    <label for="monthly-budget-input">Enter your new monthly budget goal (PHP):</label>
+    <input type="number" id="monthly-budget-input" placeholder="0.00" min="0" step="0.01" />
+  </div>
+
+  <div class="form-group">
+    <label for="daily-limit-input">Enter your daily spending limit (PHP):</label>
+    <input type="number" id="daily-limit-input" placeholder="0.00" min="0" step="0.01" />
+  </div>
+
+  <button type="button" id="save-budget-btn">Save Budget</button>
+
+  <!-- Displays validation errors or confirmation messages -->
+  <div id="budget-message"></div>
+
+  <!-- Displays the Suggested Daily Limit Breakdown -->
+  <div id="allocation-output"></div>
+</section>
+
+    <!-- ================= PAGE 2: WALLETS =================
+    ASSIGN: gab
+         Python menu option 2. wallet-list is filled by
+         renderWallets() in script.js. -->
+    <section id="wallet-section" class="page">
+      <h2>Bank &amp; E-Wallet Balances</h2>
+
+    </section>
+
+    <section id="wallet-section" class="page">
+  <h2>Bank &amp; E-Wallet Balances</h2>
+
+  <!-- Displays [1] Cash: PHP 0.00 ... filled by renderWallets() -->
+  <ul id="wallet-list"></ul>
+
+  <!-- Mirrors Python's "Select an account to set/update balance" -->
+  <div class="form-group">
+    <label for="wallet-select">Select an account to set/update balance:</label>
+    <select id="wallet-select"></select>
+  </div>
+
+  <!-- Mirrors Python's "Enter current balance for [Account]: PHP " -->
+  <div class="form-group">
+    <label for="wallet-balance-input" id="wallet-balance-label">
+      Enter current balance for Cash: PHP
+    </label>
+    <input type="number" id="wallet-balance-input" placeholder="0.00" min="0" step="0.01" />
+  </div>
+
+  <button type="button" id="update-wallet-btn">Update Balance</button>
+
+  <!-- Mirrors Python's confirmation & error print statements -->
+  <div id="wallet-message"></div>
+</section>
+
+    <!-- ================= PAGE 3: ADD EXPENSE =================
+    ASSIGN: lio
+         Python menu option 3. expense-source is filled by
+         fillWalletDropdown(). Three message areas: success +
+         daily warning + monthly warning. -->
+    <section id="expense-section" class="page">
+      <h2>Add a New Expense</h2>
+
+    </section>
+
+    <!-- ================= PAGE 4: EXPENSES =================
+    ASSIGN: jian
+         Python menu option 4. The table starts hidden;
+         renderExpenseList() shows it when there are expenses. -->
+    <section id="list-section" class="page">
+      <h2>All Recorded Expenses</h2>
+
+    </section>
+
+    <!-- ================= PAGE 5: SUMMARY =================
+    ASSIGN: mark
+         Python menu option 5 + savings. All values are filled
+         by renderSummary() in script.js. -->
+    <section id="summary-section" class="page">
+      <h2>Budget Summary Report</h2>
+
+    </section>
+
+  </main>
+</div>
+
+<!-- JavaScript goes LAST so every element above already exists -->
+<script src="script.js"></script>
+</body>
+</html>
