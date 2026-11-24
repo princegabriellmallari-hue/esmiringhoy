@@ -62,11 +62,6 @@
          Python menu option 1. Button: save-budget-btn.
          Message: budget-message. Breakdown: allocation-output. -->
     <section id="budget-section" class="page active">
-      <h2>Set Monthly Budget &amp; Daily Spending Limit</h2>
-
-    </section>
-
-    <section id="budget-section" class="page active">
   <h2>Set Monthly Budget &amp; Daily Spending Limit</h2>
 
   <div class="form-group">
@@ -92,11 +87,6 @@
     ASSIGN: gab
          Python menu option 2. wallet-list is filled by
          renderWallets() in script.js. -->
-    <section id="wallet-section" class="page">
-      <h2>Bank &amp; E-Wallet Balances</h2>
-
-    </section>
-
     <section id="wallet-section" class="page">
   <h2>Bank &amp; E-Wallet Balances</h2>
 
@@ -128,27 +118,104 @@
          Python menu option 3. expense-source is filled by
          fillWalletDropdown(). Three message areas: success +
          daily warning + monthly warning. -->
-    <section id="expense-section" class="page">
+ <section id="expense-section" class="page">
       <h2>Add a New Expense</h2>
 
+      <form id="expense-form">
+        <div class="form-group">
+          <label for="expense-source">Wallet / Source</label>
+          <select id="expense-source" name="expense-source" required>
+            <option value="" disabled selected>Select a wallet</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="expense-amount">Amount</label>
+          <input type="number" id="expense-amount" name="expense-amount" step="0.01" min="0.01" placeholder="0.00" required />
+        </div>
+
+        <div class="form-group">
+          <label for="expense-category">Category</label>
+          <input type="text" id="expense-category" name="expense-category" placeholder="e.g., Food, Transport" required />
+        </div>
+
+        <div class="form-group">
+          <label for="expense-note">Description (Optional)</label>
+          <input type="text" id="expense-note" name="expense-note" placeholder="What was this for?" />
+        </div>
+
+        <button type="submit">Add Expense</button>
+      </form>
+
+      <!-- Three Message Areas -->
+      <div id="expense-messages" class="message-container">
+        <p id="expense-success-msg" class="msg success" aria-live="polite"></p>
+        <p id="expense-daily-warning" class="msg warning" aria-live="polite"></p>
+        <p id="expense-monthly-warning" class="msg warning" aria-live="polite"></p>
+      </div>
     </section>
 
     <!-- ================= PAGE 4: EXPENSES =================
     ASSIGN: jian
          Python menu option 4. The table starts hidden;
          renderExpenseList() shows it when there are expenses. -->
-    <section id="list-section" class="page">
+  <section id="list-section" class="page">
       <h2>All Recorded Expenses</h2>
 
-    </section>
+      <!-- Empty state message shown when no expenses exist -->
+      <p id="no-expenses-msg" class="empty-msg">No expenses recorded yet.</p>
 
-    <!-- ================= PAGE 5: SUMMARY =================
+      <!-- Table starts hidden; renderExpenseList() removes 'hidden' or sets display when populated -->
+      <table id="expense-table" class="hidden" style="display: none;">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Wallet / Source</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody id="expense-table-body">
+          <!-- Rows injected dynamically by renderExpenseList() -->
+        </tbody>
+      </table>
+    </section>
+<!-- ================= PAGE 5: SUMMARY =================
     ASSIGN: mark
          Python menu option 5 + savings. All values are filled
          by renderSummary() in script.js. -->
     <section id="summary-section" class="page">
       <h2>Budget Summary Report</h2>
 
+      <div id="summary-cards" class="summary-grid">
+        <div class="summary-card">
+          <h3>Total Income / Budget</h3>
+          <p id="summary-total-budget">0.00</p>
+        </div>
+
+        <div class="summary-card">
+          <h3>Total Expenses</h3>
+          <p id="summary-total-expenses">0.00</p>
+        </div>
+
+        <div class="summary-card">
+          <h3>Remaining Balance</h3>
+          <p id="summary-remaining">0.00</p>
+        </div>
+
+        <div class="summary-card">
+          <h3>Total Savings</h3>
+          <p id="summary-total-savings">0.00</p>
+        </div>
+      </div>
+
+      <div id="summary-breakdown">
+        <h3>Expenses by Category</h3>
+        <ul id="summary-category-list">
+          <!-- Populated dynamically by renderSummary() -->
+        </ul>
+      </div>
     </section>
 
   </main>

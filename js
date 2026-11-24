@@ -299,3 +299,19 @@ navButtons.forEach(function (button) {
 
 // Start on the Budget tab
 showSection("budget-section");
+
+/* ---- 1.3 Saved data: S is our "database" in memory, and save() writes it to the browser ---- */
+let S = read(KEY, null) || seed();   // S = everything we save: items, orders, msgs and counters. Load it from the browser, or make the starting menu with seed() the first time
+S.items.forEach(i => { if (i.img) i.img = i.img.startsWith('data:') ? '' : i.img.split('/').pop(); });   // clean-up for old saved data: an old version saved a whole path or photo here, now we only keep the file name
+let cart = [], tt;   // cart = the lines in My Order, each {id, size, add:[add-on numbers], qty}. tt = timer id for the toast
+
+/* TASK: Make the starting menu (all the items from the Newland's menu PDF) with stock.
+   HOW: Loop over MENU (above). For each item make an object {id, cat, name, p (prices), stock: 20, img: ''} and put it in the items list. Each item gets its own id.
+   IN THE SYSTEM: runs the first time a browser opens the website (nothing saved yet) and when the staff press "Reset all data" in Manage. */
+function seed() {
+  let id = 1; const items = [];
+  for (const c in MENU) MENU[c].forEach(([name, ...p]) => items.push({id: id++, cat: c, name, p, stock: 20, img: ''}));
+  return {items, orders: [], msgs: [], nextId: id, nextOrder: 1};
+}
+// TASK: Write S (all our data) to the browser. Used by commit() and by the Contact form. If it fails (storage full), tell the user.
+function save() { if (!write(KEY, S)) toast('Could not save. The browser storage may be full.'); }
